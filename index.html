@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محمد شبانی - توسعه‌دهنده فرانت‌اند</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+            background: #0f0f23;
+            color: #ffffff;
+        }
+        
+        /* Typography System */
+        .font-display { font-family: 'Inter', sans-serif; font-weight: 900; letter-spacing: -0.02em; }
+        .font-body { font-family: 'Vazirmatn', sans-serif; }
+        
+        /* Color System */
+        .bg-primary { background: #0f0f23; }
+        .bg-secondary { background: #1a1a2e; }
+        .bg-accent { background: #16213e; }
+        .text-electric { color: #00d4ff; }
+        .bg-electric { background: #00d4ff; }
+        .text-gold { color: #ffd700; }
+        .bg-gold { background: #ffd700; }
+        
+        /* Hero Background */
+        .hero-bg {
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+            background-size: 80px 80px;
+            animation: gridMove 25s linear infinite;
+        }
+        
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(80px, 80px); }
+        }
+        
+        /* Typography Scale */
+        .text-hero { font-size: clamp(2.5rem, 8vw, 6rem); line-height: 0.9; }
+        .text-display { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.1; }
+        .text-large { font-size: clamp(1.25rem, 3vw, 2rem); line-height: 1.3; }
+        
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            animation: reveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        
+        @keyframes reveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.3s; }
+        .stagger-3 { animation-delay: 0.5s; }
+        .stagger-4 { animation-delay: 0.7s; }
+        
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            color: #0f0f23;
+            font-weight: 700;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #00d4ff;
+            border: 2px solid #00d4ff;
+            font-weight: 600;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .btn-secondary:hover {
+            background: #00d4ff;
+            color: #0f0f23;
+        }
+        
+        /* Profile Image */
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 4px solid #00d4ff;
+            object-fit: cover;
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+        }
+        
+        /* Skills */
+        .skill-card {
+            background: #1a1a2e;
+            border: 1px solid #2a2a3e;
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #00d4ff, #ffd700);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-8px);
+            border-color: #00d4ff;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Project Cards */
+        .project-card {
+            background: #1a1a2e;
+            border: 1px solid #2a2a3e;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 80px rgba(0, 212, 255, 0.15);
+            border-color: #00d4ff;
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+        
+        /* Tech Tags */
+        .tech-tag {
+            background: rgba(0, 212, 255, 0.1);
+            color: #00d4ff;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid rgba(0, 212, 255, 0.2);
+        }
+        
+        /* Stats */
+        .stats-number {
+            font-family: 'Inter', sans-serif;
+            font-weight: 900;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: #00d4ff;
+            line-height: 1;
+        }
+        
+        /* Navigation */
+        .nav-blur {
+            backdrop-filter: blur(20px);
+            background: rgba(15, 15, 35, 0.9);
+            border-bottom: 1px solid #2a2a3e;
+        }
+        
+        /* Video Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        
+        .modal-content {
+            background-color: #1a1a2e;
+            margin: 5% auto;
+            padding: 0;
+            border: 1px solid #00d4ff;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 900px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .close {
+            color: #00d4ff;
+            float: left;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 15px;
+            left: 25px;
+            z-index: 1001;
+            cursor: pointer;
+            background: rgba(26, 26, 46, 0.9);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .close:hover {
+            background: #00d4ff;
+            color: #0f0f23;
+        }
+        
+        #videoFrame {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+        
+        /* Experience Timeline */
+        .timeline-item {
+            position: relative;
+            padding-right: 2rem;
+            border-right: 2px solid #2a2a3e;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background: #00d4ff;
+            border-radius: 50%;
+        }
+        
+        .timeline-item:last-child {
+            border-right: none;
+        }
+        
+        /* Form Styling */
+        .form-input {
+            background: #1a1a2e;
+            border: 2px solid #2a2a3e;
+            color: #ffffff;
+            padding: 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+        
+        .form-input::placeholder {
+            color: #666666;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .text-hero { font-size: 2.5rem; }
+            .text-display { font-size: 2rem; }
+            .profile-image { width: 150px; height: 150px; }
+        }
+    </style>
+</head>
+<body class="bg-primary">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 nav-blur transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <div class="text-2xl font-display text-electric">
+                        محمد شبانی
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-8 space-x-reverse">
+                    <a href="#home" class="text-white hover:text-electric transition-colors font-medium">خانه</a>
+                    <a href="#about" class="text-white hover:text-electric transition-colors font-medium">درباره من</a>
+                    <a href="#skills" class="text-white hover:text-electric transition-colors font-medium">مهارت‌ها</a>
+                    <a href="#projects" class="text-white hover:text-electric transition-colors font-medium">پروژه‌ها</a>
+                    <a href="#contact" class="text-white hover:text-electric transition-colors font-medium">تماس</a>
+                    <button class="btn-primary" onclick="document.querySelector('#contact').scrollIntoView({behavior: 'smooth'})">
+                        شروع همکاری
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center relative">
+        <div class="relative z-10 text-center px-6 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Profile Info -->
+                <div class="order-2 lg:order-1">
+                    <div class="reveal stagger-1 mb-6">
+                        <h1 class="text-hero font-display text-white leading-none text-right">
+                            سلام، من
+                            <br>
+                            <span class="text-electric">محمد شبانی</span>
+                        </h1>
+                    </div>
+                    
+                    <div class="reveal stagger-2 mb-8">
+                        <h2 class="text-2xl md:text-3xl text-gold font-bold mb-4 text-right">
+                            توسعه‌دهنده فرانت‌اند و طراح UI/UX
+                        </h2>
+                        <p class="text-xl text-gray-300 leading-relaxed text-right">
+                            +5 سال تجربه در ساخت وب‌سایت‌ها و اپلیکیشن‌های مدرن
+                            <br>
+                            از مشهد تا سراسر ایران، پروژه هایی که تفاوت می سازند
+                        </p>
+                    </div>
+                    
+                    <div class="reveal stagger-3 flex flex-col sm:flex-row gap-4 justify-center lg:justify-end mb-8">
+                        <button class="btn-primary text-lg" onclick="document.querySelector('#projects').scrollIntoView({behavior: 'smooth'})">
+                            مشاهده پروژه‌ها
+                        </button>
+                    </div>
+                    
+                    <!-- Quick Stats -->
+                    <div class="reveal stagger-4 grid grid-cols-3 gap-6 text-center">
+                        <div>
+                            <div class="stats-number mb-2">7+</div>
+                            <p class="text-gray-400 text-sm">پروژه موفق</p>
+                        </div>
+                        <div>
+                            <div class="stats-number mb-2">5+</div>
+                            <p class="text-gray-400 text-sm">سال تجربه</p>
+                        </div>
+                        <div>
+                            <div class="stats-number mb-2">100%</div>
+                            <p class="text-gray-400 text-sm">رضایت مشتری</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Profile Image -->
+                <div class="order-1 lg:order-2 flex justify-center">
+                    <div class="reveal stagger-2">
+                        <img src="images/profile.jpg" alt="محمد شبانی" class="profile-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute top-1/4 left-10 w-2 h-32 bg-electric opacity-20 transform rotate-45 hidden lg:block"></div>
+        <div class="absolute bottom-1/4 right-10 w-2 h-24 bg-gold opacity-30 transform -rotate-45 hidden lg:block"></div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 bg-secondary">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-display font-display text-white mb-6">
+                    درباره <span class="text-electric">من</span>
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-6">داستان من</h3>
+                    <div class="space-y-6 text-gray-300 leading-relaxed">
+                        <p>
+                            سلام! من محمد شبانی هستم، متولد 19 خرداد 1380 و اهل مشهد. 
+                            مهندسی کامپیوتر خوندم و بیش از 5 سال توی دنیای برنامه‌نویسی فعالیت می‌کنم.
+                        </p>
+                        <p>
+                            تخصص اصلی من فرانت‌اند هست، ولی تیم قدرتمندی دارم که با هم پروژه‌های فول‌استک انجام می‌دیم. 
+                            اگه لازم باشه، خودم هم می‌تونم یه پروژه رو از صفر تا صد تنهایی هندل کنم.
+                        </p>
+                        <p class="text-electric font-semibold">
+                            🤖 افتخار من: طراحی ربات تحلیل لایو ارزهای دیجیتال که سیگنال‌های خرید و فروش ارائه می‌داد!
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="bg-accent p-8 rounded-2xl border border-gray-700">
+                    <h3 class="text-2xl font-bold text-white mb-8 text-center">اطلاعات شخصی</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span class="text-gray-400">نام کامل:</span>
+                            <span class="text-white font-semibold">محمد شبانی</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span class="text-gray-400">تاریخ تولد:</span>
+                            <span class="text-white font-semibold">19 خرداد 1380</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span class="text-gray-400">محل سکونت:</span>
+                            <span class="text-white font-semibold">مشهد، خراسان رضوی</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3 border-b border-gray-700">
+                            <span class="text-gray-400">تحصیلات:</span>
+                            <span class="text-white font-semibold">مهندسی کامپیوتر</span>
+                        </div>
+                        <div class="flex justify-between items-center py-3">
+                            <span class="text-gray-400">تجربه کار:</span>
+                            <span class="text-electric font-bold">+5 سال</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-32 bg-primary">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-display font-display text-white mb-6">
+                    مهارت‌ها و <span class="text-electric">تکنولوژی‌ها</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    ابزارها و تکنولوژی‌هایی که با آن‌ها پروژه‌های موفق می‌سازم
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Frontend -->
+                <div class="skill-card">
+                    <div class="text-4xl mb-4 text-center">🎨</div>
+                    <h3 class="text-xl font-bold text-white mb-4 text-center">Frontend</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">HTML5 & CSS3</span>
+                            <span class="text-electric font-bold">95%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">JavaScript ES6+</span>
+                            <span class="text-electric font-bold">90%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">React.js</span>
+                            <span class="text-electric font-bold">85%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">Vue.js</span>
+                            <span class="text-electric font-bold">80%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Styling -->
+                <div class="skill-card">
+                    <div class="text-4xl mb-4 text-center">💎</div>
+                    <h3 class="text-xl font-bold text-white mb-4 text-center">Styling</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">Tailwind CSS</span>
+                            <span class="text-electric font-bold">95%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">Bootstrap</span>
+                            <span class="text-electric font-bold">90%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">SASS/SCSS</span>
+                            <span class="text-electric font-bold">85%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">CSS Grid & Flexbox</span>
+                            <span class="text-electric font-bold">95%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Backend -->
+                <div class="skill-card">
+                    <div class="text-4xl mb-4 text-center">⚙️</div>
+                    <h3 class="text-xl font-bold text-white mb-4 text-center">Backend</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">Node.js</span>
+                            <span class="text-electric font-bold">75%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">PHP</span>
+                            <span class="text-electric font-bold">70%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">Laravel</span>
+                            <span class="text-electric font-bold">65%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">MySQL</span>
+                            <span class="text-electric font-bold">80%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tools -->
+                <div class="skill-card">
+                    <div class="text-4xl mb-4 text-center">🛠️</div>
+                    <h3 class="text-xl font-bold text-white mb-4 text-center">ابزارها</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">Git & GitHub</span>
+                            <span class="text-electric font-bold">85%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">Figma</span>
+                            <span class="text-electric font-bold">90%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">Photoshop</span>
+                            <span class="text-electric font-bold">80%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">VS Code</span>
+                            <span class="text-electric font-bold">95%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="py-32 bg-secondary">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-display font-display text-white mb-6">
+                    سابقه <span class="text-electric">کاری</span>
+                </h2>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="space-y-12">
+                    <div class="timeline-item">
+                        <div class="bg-accent p-6 rounded-lg mr-8">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">توسعه‌دهنده فرانت‌اند ارشد</h3>
+                                    <p class="text-electric font-semibold">شرکت تک ویژن</p>
+                                </div>
+                                <span class="text-gray-400 text-sm">1402 - تاکنون</span>
+                            </div>
+                            <p class="text-gray-300 leading-relaxed">
+                                طراحی و توسعه سیستم‌های پیچیده وب، کار با تیم‌های بین‌المللی، 
+                                پیاده‌سازی معماری مدرن فرانت‌اند و بهینه‌سازی عملکرد اپلیکیشن‌ها
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="bg-accent p-6 rounded-lg mr-8">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">برنامه‌نویس فرانت‌اند</h3>
+                                    <p class="text-electric font-semibold">شرکت فناوری نوین پردازش</p>
+                                </div>
+                                <span class="text-gray-400 text-sm">1400 - 1402</span>
+                            </div>
+                            <p class="text-gray-300 leading-relaxed">
+                                توسعه اپلیکیشن‌های وب با React و Vue.js، کار با API ها، 
+                                پیاده‌سازی سیستم‌های مدیریت محتوا و بهبود تجربه کاربری
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="bg-accent p-6 rounded-lg mr-8">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="text-xl font-bold text-white">توسعه‌دهنده وب</h3>
+                                    <p class="text-electric font-semibold">گروه توسعه وب آسیا (فریلنس)</p>
+                                </div>
+                                <span class="text-gray-400 text-sm">1398 - 1400</span>
+                            </div>
+                            <p class="text-gray-300 leading-relaxed">
+                                شروع فعالیت حرفه‌ای، طراحی وب‌سایت‌های شخصی و تجاری، 
+                                یادگیری تکنولوژی‌های مدرن و کسب تجربه در پروژه‌های مختلف
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-32 bg-primary">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-display font-display text-white mb-6">
+                    نمونه <span class="text-electric">پروژه‌ها</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    مجموعه‌ای از پروژه‌های موفق که برای مشتریان مختلف انجام داده‌ام
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1: سفرنامه -->
+                <div class="project-card">
+                    <img src="images/project1-safarnameh.jpg" alt="سایت رزرو آنلاین سفر - سفرنامه" class="project-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">سایت رزرو آنلاین سفر - سفرنامه</h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed text-sm">
+                            پلتفرم کامل رزرو پرواز و هتل با سیستم جستجوی پیشرفته و طراحی مدرن RTL
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Tailwind</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="btn-primary text-sm px-4 py-2" onclick="openVideoModal('project1')">
+                                🎬 مشاهده دمو
+                            </button>
+                            <button class="btn-secondary text-sm px-4 py-2">
+                                جزئیات بیشتر
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2: فروشگاه لباس -->
+                <div class="project-card">
+                    <img src="images/project2-fashion.jpg" alt="فروشگاه آنلاین لباس مدرن" class="project-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">فروشگاه آنلاین لباس مدرن</h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed text-sm">
+                            فروشگاه آنلاین با طراحی مینیمال، سیستم فیلتر پیشرفته و سبد خرید کاربردی
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Responsive</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="btn-primary text-sm px-4 py-2" onclick="openVideoModal('project2')">
+                                🎬 مشاهده دمو
+                            </button>
+                            <button class="btn-secondary text-sm px-4 py-2">
+                                جزئیات بیشتر
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3: شکایت آسان -->
+                <div class="project-card">
+                    <img src="images/project3-legal.jpg" alt="پلتفرم حقوقی شکایت آسان" class="project-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">پلتفرم حقوقی شکایت آسان</h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed text-sm">
+                            سیستم جامع خدمات حقوقی آنلاین با تمرکز بر اعتمادسازی و سادگی استفاده
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">Bootstrap</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="btn-primary text-sm px-4 py-2" onclick="openVideoModal('project3')">
+                                🎬 مشاهده دمو
+                            </button>
+                            <button class="btn-secondary text-sm px-4 py-2">
+                                جزئیات بیشتر
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4: املاک قوچان -->
+                <div class="project-card">
+                    <img src="images/project4-real-estate.jpg" alt="وب‌سایت املاک مسکن پلاس قوچان" class="project-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">املاک مسکن پلاس قوچان</h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed text-sm">
+                            پلتفرم جامع املاک با سیستم جستجوی پیشرفته و ادغام واتساپ برای ارتباط مستقیم
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag">HTML5</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">WhatsApp API</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="btn-primary text-sm px-4 py-2" onclick="openVideoModal('project4')">
+                                🎬 مشاهده دمو
+                            </button>
+                            <button class="btn-secondary text-sm px-4 py-2">
+                                جزئیات بیشتر
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5: فولادو -->
+                <div class="project-card">
+                    <img src="images/project5-foolado.jpg" alt="پلتفرم تجاری فولادو" class="project-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">پلتفرم تجاری فولادو</h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed text-sm">
+                            پلتفرم B2B صنعت آهن و فولاد با کاتالوگ جامع و سیستم درخواست قیمت آنلاین
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">MySQL</span>
+                            <span class="tech-tag">B2B</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="btn-primary text-sm px-4 py-2" onclick="openVideoModal('project5')">
+                                🎬 مشاهده دمو
+                            </button>
+                            <button class="btn-secondary text-sm px-4 py-2">
+                                جزئیات بیشتر
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6: تک ویژن -->
+                <div class="project-card">
+                    <img src="images/project6-techvision.jpg" alt="پلتفرم شرکت تک ویژن" class="project-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">پلتفرم شرکت تک ویژن</h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed text-sm">
+                            سیستم مدیریت جامع شرکت با داشبورد پیشرفته، گزارش‌گیری و ادغام سیستم‌های مختلف
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">TypeScript</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">Enterprise</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="btn-primary text-sm px-4 py-2" onclick="openVideoModal('project6')">
+                                🎬 مشاهده دمو
+                            </button>
+                            <button class="btn-secondary text-sm px-4 py-2">
+                                جزئیات بیشتر
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 7: رزومه‌ساز -->
+                <div class="project-card">
+                    <img src="images/project7-resume.jpg" alt="رزومه‌ساز آنلاین" class="project-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-3">رزومه‌ساز آنلاین</h3>
+                        <p class="text-gray-400 mb-4 leading-relaxed text-sm">
+                            اپلیکیشن وب فارسی برای ساخت رزومه‌های حرفه‌ای با ۳ قالب مختلف و خروجی PDF
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">jsPDF</span>
+                            <span class="tech-tag">CSS3</span>
+                            <span class="tech-tag">Persian</span>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="btn-primary text-sm px-4 py-2" onclick="openVideoModal('project7')">
+                                🎬 مشاهده دمو
+                            </button>
+                            <button class="btn-secondary text-sm px-4 py-2">
+                                جزئیات بیشتر
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 bg-secondary">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-display font-display text-white mb-6">
+                    بیایید <span class="text-electric">همکاری</span> کنیم
+                </h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    پروژه جدیدی در ذهن دارید؟ بیایید آن را به واقعیت تبدیل کنیم
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- Contact Info -->
+                <div>
+                    <div class="bg-accent p-8 rounded-2xl border border-gray-700">
+                        <h3 class="text-2xl font-bold text-white mb-8">اطلاعات تماس</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-electric flex items-center justify-center rounded-lg ml-4">
+                                    <span class="text-black text-xl">📧</span>
+                                </div>
+                                <div>
+                                    <div class="text-white font-semibold">ایمیل</div>
+                                    <div class="text-gray-400">mhmdshbni80@gmail.com</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-electric flex items-center justify-center rounded-lg ml-4">
+                                    <span class="text-black text-xl">📱</span>
+                                </div>
+                                <div>
+                                    <div class="text-white font-semibold">تلفن تماس</div>
+                                    <div class="text-gray-400">0901-919-7082</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-12 h-12 bg-electric flex items-center justify-center rounded-lg ml-4">
+                                    <span class="text-black text-xl">📍</span>
+                                </div>
+                                <div>
+                                    <div class="text-white font-semibold">آدرس</div>
+                                    <div class="text-gray-400">مشهد، خراسان رضوی</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 pt-8 border-t border-gray-700">
+                            <h4 class="text-lg font-bold text-white mb-4">خدمات من</h4>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="text-gray-300 text-sm">✓ طراحی وب‌سایت</div>
+                                <div class="text-gray-300 text-sm">✓ توسعه فرانت‌اند</div>
+                                <div class="text-gray-300 text-sm">✓ طراحی UI/UX</div>
+                                <div class="text-gray-300 text-sm">✓ بهینه‌سازی</div>
+                                <div class="text-gray-300 text-sm">✓ ریسپانسیو</div>
+                                <div class="text-gray-300 text-sm">✓ مشاوره فنی</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div>
+                    <form class="bg-accent p-8 rounded-2xl border border-gray-700">
+                        <h3 class="text-2xl font-bold text-white mb-8">شروع پروژه جدید</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <label for="name" class="block text-white font-medium mb-3">نام و نام خانوادگی</label>
+                                <input type="text" id="name" name="name" class="form-input w-full" placeholder="نام خود را وارد کنید" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-white font-medium mb-3">ایمیل</label>
+                                <input type="email" id="email" name="email" class="form-input w-full" placeholder="ایمیل خود را وارد کنید" required>
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-white font-medium mb-3">شماره تماس</label>
+                                <input type="tel" id="phone" name="phone" class="form-input w-full" placeholder="شماره تماس خود را وارد کنید">
+                            </div>
+                            <div>
+                                <label for="project-type" class="block text-white font-medium mb-3">نوع پروژه</label>
+                                <select id="project-type" name="project-type" class="form-input w-full">
+                                    <option value="">انتخاب کنید</option>
+                                    <option value="طراحی وب‌سایت">طراحی وب‌سایت</option>
+                                    <option value="فروشگاه آنلاین">فروشگاه آنلاین</option>
+                                    <option value="اپلیکیشن وب">اپلیکیشن وب</option>
+                                    <option value="بازطراحی سایت">بازطراحی سایت</option>
+                                    <option value="مشاوره فنی">مشاوره فنی</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-white font-medium mb-3">توضیحات پروژه</label>
+                                <textarea id="message" name="message" rows="4" class="form-input w-full resize-none" placeholder="توضیح مختصری از پروژه خود بدهید" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary w-full text-lg">
+                                ارسال درخواست همکاری
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary border-t border-gray-800 py-16">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center">
+                <div class="text-3xl font-display text-electric mb-4">محمد شبانی</div>
+                <p class="text-gray-400 mb-8">توسعه‌دهنده فرانت‌اند و طراح UI/UX</p>
+                <div class="flex justify-center space-x-6 space-x-reverse mb-8">
+                    <a href="mailto:mhmdshbni80@gmail.com" class="w-12 h-12 bg-electric flex items-center justify-center rounded-lg hover:bg-white transition-colors">
+                        <span class="text-black text-xl">📧</span>
+                    </a>
+                    <a href="tel:09019197082" class="w-12 h-12 bg-electric flex items-center justify-center rounded-lg hover:bg-white transition-colors">
+                        <span class="text-black text-xl">📱</span>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-electric flex items-center justify-center rounded-lg hover:bg-white transition-colors">
+                        <span class="text-black text-xl">💼</span>
+                    </a>
+                </div>
+                <div class="border-t border-gray-800 pt-8 text-gray-400">
+                    <p>&copy; 2025 محمد شبانی. تمامی حقوق محفوظ است.</p>
+                    <p class="mt-2 text-sm">ساخته شده با ❤️ در مشهد</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <iframe id="videoFrame" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Initialize EmailJS
+        emailjs.init('LLpDvyDu9E_trmY6g');
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(15, 15, 35, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(15, 15, 35, 0.9)';
+            }
+        });
+
+        // Video Modal Functions
+        function openVideoModal(projectId) {
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('videoFrame');
+            
+            // اینجا باید لینک‌های واقعی آپارات قرار بگیره
+            const videoLinks = {
+                'project1': 'https://www.aparat.com/video/video/embed/videohash/PROJECT1_HASH/vt/frame',
+                'project2': 'https://www.aparat.com/video/video/embed/videohash/PROJECT2_HASH/vt/frame',
+                'project3': 'https://www.aparat.com/video/video/embed/videohash/PROJECT3_HASH/vt/frame',
+                'project4': 'https://www.aparat.com/video/video/embed/videohash/PROJECT4_HASH/vt/frame',
+                'project5': 'https://www.aparat.com/video/video/embed/videohash/PROJECT5_HASH/vt/frame',
+                'project6': 'https://www.aparat.com/video/video/embed/videohash/TECHVISION_HASH/vt/frame',
+                'project7': 'https://www.aparat.com/video/video/embed/videohash/PROJECT7_HASH/vt/frame'
+            };
+            
+            iframe.src = videoLinks[projectId] || '';
+            modal.style.display = 'block';
+        }
+
+        // Close modal
+        document.querySelector('.close').addEventListener('click', function() {
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('videoFrame');
+            modal.style.display = 'none';
+            iframe.src = '';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('videoModal');
+            if (event.target === modal) {
+                const iframe = document.getElementById('videoFrame');
+                modal.style.display = 'none';
+                iframe.src = '';
+            }
+        });
+
+        // Form submission with EmailJS
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+            const projectType = formData.get('project-type');
+            const message = formData.get('message');
+            
+            if (!name || !email || !message) {
+                showNotification('لطفاً فیلدهای ضروری را پر کنید', 'error');
+                return;
+            }
+            
+            // Show loading
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'در حال ارسال...';
+            submitBtn.disabled = true;
+            
+            // Send email using EmailJS
+            const templateParams = {
+                name: name,
+                email: email,
+                phone: phone || 'ارائه نشده',
+                project_type: projectType || 'مشخص نشده',
+                message: message,
+                reply_to: email
+            };
+            
+            emailjs.send('service_agslxjb', 'template_0l9rhva', templateParams)
+                .then(function(response) {
+                    showNotification('درخواست شما با موفقیت ارسال شد! به زودی با شما تماس خواهم گرفت.', 'success');
+                    document.querySelector('form').reset();
+                }, function(error) {
+                    showNotification('خطا در ارسال! لطفاً مجدداً تلاش کنید یا با شماره تماس بگیرید.', 'error');
+                    console.error('EmailJS error:', error);
+                })
+                .finally(function() {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
+        });
+
+        // Download Resume
+        function downloadResume() {
+            showNotification('رزومه در حال آماده‌سازی است...', 'info');
+            // اینجا می‌تونی لینک فایل PDF رزومه رو قرار بدی
+        }
+
+        // Notification system
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            const bgColor = type === 'success' ? 'bg-electric text-black' : 
+                           type === 'error' ? 'bg-red-600' : 'bg-blue-600';
+            
+            notification.className = `fixed top-6 right-6 z-50 p-4 font-medium transform translate-x-full transition-transform duration-300 rounded-lg ${bgColor}`;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.remove('translate-x-full');
+            }, 100);
+            
+            setTimeout(() => {
+                notification.classList.add('translate-x-full');
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 5000);
+        }
+
+        // Counter animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stats-number');
+            counters.forEach(counter => {
+                const target = parseInt(counter.textContent.replace(/\D/g, ''));
+                const increment = target / 50;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        counter.textContent = counter.textContent.replace(/\d+/, target);
+                        clearInterval(timer);
+                    } else {
+                        counter.textContent = counter.textContent.replace(/\d+/, Math.floor(current));
+                    }
+                }, 40);
+            });
+        }
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('stats-number')) {
+                        animateCounters();
+                    }
+                }
+            });
+        });
+
+        document.querySelectorAll('.stats-number').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'995333e515b39719',t:'MTc2MTU3ODY5MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
